@@ -14,17 +14,23 @@ var containsSpecial = true;
 function generatePassword() {
   var length = 18;
   var password = "";
+  var possible = "";
+  
   // CODE GOES HERE
+
+
 
   if (containsLower) {
     // Randomly select from letters (rounded down)
     // Grab a random letter
     // Log the selected letters output
     var random = Math.floor(Math.random() * letters.length);
-    var selectedLetter = letters[random];
-  
-    stored.push(selectedLetter);
-    console.log(selectedLetter);
+    var collected = letters[random];
+    // Possibilty of letters
+    possible = possible.concat(letters); 
+    // Storing info within collected
+    stored.push(collected);
+ 
   }
 
 
@@ -33,35 +39,44 @@ function generatePassword() {
     // Grab a random letter
     // Log the output
     var random = Math.floor(Math.random() * upper.length);
-    var selectedUpper = upper[random];
-
-    stored.push(selectedUpper);
-    console.log(selectedUpper);
+    var collected = upper[random];
+    // Possibilty of letters
+    possible = possible.concat(upper); 
+    // Storing info within selectedLetter
+    stored.push(collected);
+   
   }
 
-
+  // Repeated steps from above
   if (containsNumber) {
     var random = Math.floor(Math.random() * numbers.length);
-    var selectedNumber = numbers[random];
-    stored.push(selectedNumber);
-    console.log(selectedNumber);
+    var collected = numbers[random];
+    possible = possible.concat(numbers); 
+    stored.push(collected);
+
   }
 
-
+  // Repeated steps from above  
   if (containsSpecial) {
     var random = Math.floor(Math.random() * special.length);
-    var selectedSpecial = special[random];
-    stored.push(selectedSpecial);
-    console.log(selectedSpecial);
+    var collected = special[random];
+    possible = possible.concat(special); 
+    stored.push(collected);
   }
 
-
-  for (var i = 0; i < length; i++) {
-    var random = Math.floor(Math.random() * letters.length);
-    password += letters[random];
+  // Loop
+  for (var i = 0; i < length - stored.length; i++) {
+    var random = Math.floor(Math.random() * possible.length);
+    password += possible[random];
   }
 
-  console.log(password);
+  // Logs the possible and password strings
+  console.log('POSSIBLE', possible);
+  console.log('PASSWORD', password);
+  // Storing before clear out
+  console.log('STORED', stored);
+  stored = [];
+  // Returns the password
   return password;
 }
 
