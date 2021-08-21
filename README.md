@@ -9,7 +9,7 @@ Designed Javascript code to generate a random password at the click of a button 
 [Source Code](https://github.com/asantercureton/password-generator)
 
 
-[Description Link](https://asantercureton.github.io/personal-portfolio/)
+[Description Link](https://asantercureton.github.io/password-generator/)
 
 
 ## Usage
