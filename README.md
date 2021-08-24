@@ -13,7 +13,7 @@ Designed Javascript code to generate a random password at the click of a button 
 
 
 ## Usage
-Generates a random password at the click of a button that is at least 8 characters long.
+Generates a random password at the click of a button that is at least 8 characters long, but less than 128 characters.
 
 
 ## Screenshots
