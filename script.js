@@ -4,7 +4,7 @@ var input = document.querySelector("#password");
 var letters = "abcdefghijklmnopqrstuvwxyz";
 var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numbers = "0123456789";
-var special = "!#$%&()*+,-./:;<=>?@[\]^_'{|}~" ;
+var special = "!#$%&()*+,-./:;<=>?@[\]^_'{|}~";
 var stored = [];
 var containsLower = true;
 var containsUpper = true;
@@ -16,64 +16,70 @@ function generatePassword() {
   var length = parseInt(result);
   var password = "";
   var possible = "";
-  
+
   // CODE GOES HERE
   if (!isNaN(length) && length >= 8 && length <= 128) {
 
-    letters = confirm('Do you want lowercase letters in your generated password?');
-    upper = confirm('Do you want uppercase letters in your generated password?');
-    numbers = confirm('Do you want numbers in your generated password?');
-    special = confirm('Do you want special characters in your generated password?');
+    containsLower = confirm('Do you want lowercase letters in your generated password?');
+    containsUpper = confirm('Do you want uppercase letters in your generated password?');
+    containsNumber = confirm('Do you want numbers in your generated password?');
+    containsSpecial = confirm('Do you want special characters in your generated password?');
+    
+    if (!containsLower && !containsUpper && !containsNumber && !containsSpecial) {
+      alert("Please select a parameter for lowercase, uppercase, number and/or special character.");
+      return generatePassword();
+    }
 
-  if (containsLower) {
-    // Randomly select from letters (rounded down)
-    // Grab a random letter
-    // Log the selected letters output
-    var random = Math.floor(Math.random() * letters.length);
-    var collected = letters[random];
-    // Possibilty of letters
-    possible = possible.concat(letters); 
-    // Storing info within collected
-    stored.push(collected);
- 
-  }
+    if (containsLower) {
+      // Randomly select from letters (rounded down)
+      // Grab a random letter
+      // Log the selected letters output
+      var random = Math.floor(Math.random() * letters.length);
+      var collected = letters[random];
+      // Possibilty of letters
+      possible = possible.concat(letters);
+      // Storing info within collected
+      stored.push(collected);
+    }
 
 
-  if (containsUpper) {
-    // Randomly select from letters (rounded down)
-    // Grab a random letter
-    // Log the output
-    var random = Math.floor(Math.random() * upper.length);
-    var collected = upper[random];
-    // Possibilty of letters
-    possible = possible.concat(upper); 
-    // Storing info within selectedLetter
-    stored.push(collected);
-   
-  }
+    if (containsUpper) {
+      // Randomly select from letters (rounded down)
+      // Grab a random letter
+      // Log the output
+      var random = Math.floor(Math.random() * upper.length);
+      var collected = upper[random];
+      // Possibilty of letters
+      possible = possible.concat(upper);
+      // Storing info within selectedLetter
+      stored.push(collected);
 
-  // Repeated steps from above
-  if (containsNumber) {
-    var random = Math.floor(Math.random() * numbers.length);
-    var collected = numbers[random];
-    possible = possible.concat(numbers); 
-    stored.push(collected);
+    }
 
-  }
+    // Repeated steps from above
+    if (containsNumber) {
+      var random = Math.floor(Math.random() * numbers.length);
+      var collected = numbers[random];
+      possible = possible.concat(numbers);
+      stored.push(collected);
 
-  // Repeated steps from above  
-  if (containsSpecial) {
-    var random = Math.floor(Math.random() * special.length);
-    var collected = special[random];
-    possible = possible.concat(special); 
-    stored.push(collected);
+    }
+
+    // Repeated steps from above  
+    if (containsSpecial) {
+      var random = Math.floor(Math.random() * special.length);
+      var collected = special[random];
+      possible = possible.concat(special);
+      stored.push(collected);
+    }
   } else {
-    return "";
+    alert("Please enter a valid value.");
+    // Gives a result if one or reruns function
+    return generatePassword();
   }
-}
-
+  console.log(stored);
   // Loop
-  for (var i = 0; i < length - stored.length; i++) {
+  for (var i = 0; i < length; i++) {
     var random = Math.floor(Math.random() * possible.length);
     password += possible[random];
   }
@@ -94,7 +100,7 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   if (password) {
-  passwordText.value = password;
+    passwordText.value = password;
   }
 }
 
