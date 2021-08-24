@@ -12,13 +12,18 @@ var containsNumber = true;
 var containsSpecial = true;
 
 function generatePassword() {
-  var length = 18;
+  var result = prompt("Choose a length of at least 8 characters and no more than 128 characters.");
+  var length = parseInt(result);
   var password = "";
   var possible = "";
   
   // CODE GOES HERE
+  if (!isNaN(length) && length >= 8 && length <= 128) {
 
-
+    letters = confirm('Do you want lowercase letters in your generated password?');
+    upper = confirm('Do you want uppercase letters in your generated password?');
+    numbers = confirm('Do you want numbers in your generated password?');
+    special = confirm('Do you want special characters in your generated password?');
 
   if (containsLower) {
     // Randomly select from letters (rounded down)
@@ -62,7 +67,10 @@ function generatePassword() {
     var collected = special[random];
     possible = possible.concat(special); 
     stored.push(collected);
+  } else {
+    return "";
   }
+}
 
   // Loop
   for (var i = 0; i < length - stored.length; i++) {
