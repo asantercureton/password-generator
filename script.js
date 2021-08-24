@@ -26,7 +26,7 @@ function generatePassword() {
     containsSpecial = confirm('Do you want special characters in your generated password?');
     
     if (!containsLower && !containsUpper && !containsNumber && !containsSpecial) {
-      alert("Please select a parameter for lowercase, uppercase, number and/or special character.");
+      alert("Please select a parameter for lowercase, uppercase, number and/or special characters.");
       return generatePassword();
     }
 
